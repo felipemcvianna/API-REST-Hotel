@@ -4,6 +4,7 @@ using HotelApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelApi.Migrations
 {
     [DbContext(typeof(HotelDbContext))]
-    partial class HotelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240717144354_CreateHospedeAndReserva")]
+    partial class CreateHospedeAndReserva
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,7 +56,7 @@ namespace HotelApi.Migrations
 
                     b.HasIndex("ReservaId");
 
-                    b.ToTable("Hospedes", (string)null);
+                    b.ToTable("Hospedes");
                 });
 
             modelBuilder.Entity("HotelApi.Context.Quarto.Models.Quarto", b =>
@@ -75,7 +78,7 @@ namespace HotelApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Quartos", (string)null);
+                    b.ToTable("Quartos");
                 });
 
             modelBuilder.Entity("HotelApi.Context.Reserva.Models.Reserva", b =>
@@ -100,7 +103,7 @@ namespace HotelApi.Migrations
                     b.HasIndex("QuartoId")
                         .IsUnique();
 
-                    b.ToTable("Reservas", (string)null);
+                    b.ToTable("Reservas");
                 });
 
             modelBuilder.Entity("HotelApi.Context.Clientes.Models.Hospede", b =>

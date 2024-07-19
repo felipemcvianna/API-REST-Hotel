@@ -103,3 +103,4 @@ C:\Users\FelipeDev\Desktop\HotelApi\HotelApi\obj\Debug\net8.0\refint\HotelApi.dl
 C:\Users\FelipeDev\Desktop\HotelApi\HotelApi\obj\Debug\net8.0\HotelApi.pdb
 C:\Users\FelipeDev\Desktop\HotelApi\HotelApi\obj\Debug\net8.0\HotelApi.genruntimeconfig.cache
 C:\Users\FelipeDev\Desktop\HotelApi\HotelApi\obj\Debug\net8.0\ref\HotelApi.dll
+C:\Users\FelipeDev\Desktop\HotelApi\HotelApi\obj\Debug\net8.0\HotelApi.sourcelink.json

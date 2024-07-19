@@ -1,25 +1,24 @@
 ﻿using HotelApi.Context.Quarto.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace HotelApi.Context.Quarto.Controllers;
 
 [ApiController]
-[Route("v1")]
+[Route("v1/quarto")]
 public class QuartoController : ControllerBase
 {
-    private readonly QuartoServico _quartoServico;
+    private readonly ServicesQuarto _servicesQuarto;
 
-    public QuartoController(QuartoServico quartoServico)
+    public QuartoController(ServicesQuarto servicesQuarto)
     {
-        _quartoServico = quartoServico;
+        _servicesQuarto = servicesQuarto;
     }
 
     [HttpGet]
     [Route("GetAll")]
-    public async Task<IActionResult> GetAll()
+    public async Task<IActionResult> GetAllAsync()
     {
-        var lista = await _quartoServico.GetAll();
+        var lista = await _servicesQuarto.GetAll();
         if (lista.Count == 0)
         {
             return NotFound("Lista de quartos vazia");
@@ -30,20 +29,20 @@ public class QuartoController : ControllerBase
 
     [HttpGet]
     [Route("GetById/{id}")]
-    public async Task<IActionResult> GetQuartoById([FromRoute] string id)
+    public async Task<IActionResult> GetByIdAsync([FromRoute] int id)
     {
-        var quarto = await _quartoServico.GetById(id);
+        var quarto = await _servicesQuarto.GetById(id);
         return Ok(quarto);
     }
 
     [HttpPost]
     [Route("Create")]
-    public async Task<IActionResult> Insert([FromBody] Models.Quarto quarto)
+    public async Task<IActionResult> InsertAsync([FromBody] Models.Quarto quarto)
     {
         try
         {
-            await _quartoServico.InsertQuarto(quarto);
-            return Created();
+            await _servicesQuarto.InsertQuarto(quarto);
+            return CreatedAtAction(nameof(InsertAsync), new { id = quarto.Id }, quarto);
         }
         catch (Exception e)
         {
@@ -52,14 +51,31 @@ public class QuartoController : ControllerBase
     }
 
     [HttpPut]
-    [Route("Put")]
-    public async Task<IActionResult> UpdateQuarto([FromBody] Models.Quarto quarto)
+    [Route("UpdatePut")]
+    public async Task<IActionResult> UpdateAsync([FromBody] Models.Quarto quarto)
+    {
+        try
+        {
+            await _servicesQuarto.Update(quarto);
+        }
+        catch (Exception ex)
+        {
+            return NotFound(ex.Message);
+        }
+
+        return NoContent();
+    }
+
+    [HttpDelete]
+    [Route("Delete/{id}")]
+    public async Task<IActionResult> DeleteAsync([FromRoute] int id)
     {
         if (ModelState.IsValid)
         {
-            await _quartoServico.Update(quarto);
-            return Ok(quarto);
+            await _servicesQuarto.Delete(id);
+            return NoContent();
         }
+
         return BadRequest();
     }
 }

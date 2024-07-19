@@ -17,13 +17,4 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Context\Reserva\Controllers\" />
-      <Folder Include="Context\Reserva\Models\" />
-      <Folder Include="Context\Reserva\Services\" />
-      <Folder Include="Context\Usuários\Controllers\" />
-      <Folder Include="Context\Usuários\Models\" />
-      <Folder Include="Context\Usuários\Services\" />
-    </ItemGroup>
-
 </Project>
