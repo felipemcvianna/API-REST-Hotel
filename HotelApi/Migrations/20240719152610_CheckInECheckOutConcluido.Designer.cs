@@ -4,6 +4,7 @@ using HotelApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelApi.Migrations
 {
     [DbContext(typeof(HotelDbContext))]
-    partial class HotelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240719152610_CheckInECheckOutConcluido")]
+    partial class CheckInECheckOutConcluido
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,7 @@ namespace HotelApi.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
-            modelBuilder.Entity("HotelApi.Context.Hospedes.Models.Hospede", b =>
+            modelBuilder.Entity("HotelApi.Context.Clientes.Models.Hospede", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -72,9 +75,6 @@ namespace HotelApi.Migrations
                     b.Property<int>("Numero")
                         .HasColumnType("int");
 
-                    b.Property<int>("SalvarVagas")
-                        .HasColumnType("int");
-
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -117,7 +117,7 @@ namespace HotelApi.Migrations
                     b.ToTable("Reservas");
                 });
 
-            modelBuilder.Entity("HotelApi.Context.Hospedes.Models.Hospede", b =>
+            modelBuilder.Entity("HotelApi.Context.Clientes.Models.Hospede", b =>
                 {
                     b.HasOne("HotelApi.Context.Quarto.Models.Quarto", null)
                         .WithMany("Hospedes")

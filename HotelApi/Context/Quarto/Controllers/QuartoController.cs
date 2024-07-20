@@ -1,4 +1,6 @@
-﻿using HotelApi.Context.Quarto.Services;
+﻿using System.Diagnostics.CodeAnalysis;
+using HotelApi.Context.DTOs;
+using HotelApi.Context.Quarto.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HotelApi.Context.Quarto.Controllers;
@@ -16,6 +18,7 @@ public class QuartoController : ControllerBase
 
     [HttpGet]
     [Route("GetAll")]
+    [SuppressMessage("ReSharper.DPA", "DPA0011: High execution time of MVC action", MessageId = "time: 1187ms")]
     public async Task<IActionResult> GetAllAsync()
     {
         var lista = await _servicesQuarto.GetAll();
@@ -37,12 +40,12 @@ public class QuartoController : ControllerBase
 
     [HttpPost]
     [Route("Create")]
-    public async Task<IActionResult> InsertAsync([FromBody] Models.Quarto quarto)
+    public async Task<IActionResult> InsertAsync([FromBody] QuartoDTO quarto)
     {
         try
         {
             await _servicesQuarto.InsertQuarto(quarto);
-            return CreatedAtAction(nameof(InsertAsync), new { id = quarto.Id }, quarto);
+            return Created();
         }
         catch (Exception e)
         {
@@ -51,12 +54,12 @@ public class QuartoController : ControllerBase
     }
 
     [HttpPut]
-    [Route("UpdatePut")]
-    public async Task<IActionResult> UpdateAsync([FromBody] Models.Quarto quarto)
+    [Route("UpdatePut/{id}")]
+    public async Task<IActionResult> UpdateAsync([FromRoute] int id, [FromBody] QuartoDTO quarto)
     {
         try
         {
-            await _servicesQuarto.Update(quarto);
+            await _servicesQuarto.Update(id, quarto);
         }
         catch (Exception ex)
         {

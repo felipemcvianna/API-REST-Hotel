@@ -1,4 +1,4 @@
-﻿using HotelApi.Context.Clientes.Models;
+﻿using HotelApi.Context.Hospedes.Models;
 using HotelApi.Context.Quarto.Models;
 using HotelApi.Context.Reserva.Models;
 using Microsoft.EntityFrameworkCore;

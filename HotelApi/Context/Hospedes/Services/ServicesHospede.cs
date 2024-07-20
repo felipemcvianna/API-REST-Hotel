@@ -1,8 +1,9 @@
-﻿using HotelApi.Context.Clientes.Models;
+﻿using HotelApi.Context.DTOs;
+using HotelApi.Context.Hospedes.Models;
 using HotelApi.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace HotelApi.Context.Clientes.Services;
+namespace HotelApi.Context.Hospedes.Services;
 
 public class ServicesHospede
 {
@@ -26,28 +27,37 @@ public class ServicesHospede
         return hospede;
     }
 
-    public async Task Create(Hospede hospede)
+    public async Task Create(HospedeDTO hospedeDto)
     {
+        var hospede = new Hospede()
+        {
+            Nome = hospedeDto.Nome,
+            Email = hospedeDto.Email,
+            CPF = hospedeDto.CPF,
+            Celular = hospedeDto.Celular
+        };
         await _context.Hospedes.AddAsync(hospede);
         await _context.SaveChangesAsync();
     }
 
-    public async Task Update(Hospede? hospede)
+    public async Task Update(int id, HospedeDTO hospede)
     {
-        if (hospede == null)
+        var hospedeEncontrado = await GetHospedeByid(id);
+        if (hospedeEncontrado == null)
             throw new ArgumentException("O Hospede passado é nulo");
 
-        var hospedeEncontrado = await GetHospedeByid(hospede.Id);
+        
         hospedeEncontrado.Celular = hospede.Celular;
         hospedeEncontrado.Email = hospede.Email;
         hospedeEncontrado.Nome = hospede.Nome;
         hospedeEncontrado.CPF = hospede.CPF;
+
         _context.Hospedes.Update(hospedeEncontrado);
         await _context.SaveChangesAsync();
     }
 
     public async Task Delete(int id)
-    { 
+    {
         var hospedeARemover = await GetHospedeByid(id);
         _context.Hospedes.Remove(hospedeARemover);
         await _context.SaveChangesAsync();

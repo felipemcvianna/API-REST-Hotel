@@ -1,10 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace HotelApi.Context.Hospedes.Models;
+namespace HotelApi.Context.DTOs;
 
-public class Hospede
+public class HospedeDTO
 {
-    public int Id { get; set; }
 
     [Required(ErrorMessage = "O nome é obrigatório")]
     public string Nome { get; set; }

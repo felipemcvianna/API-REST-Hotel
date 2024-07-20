@@ -1,9 +1,10 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using HotelApi.Context.Clientes.Models;
-using HotelApi.Context.Clientes.Services;
+using HotelApi.Context.DTOs;
+using HotelApi.Context.Hospedes.Models;
+using HotelApi.Context.Hospedes.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HotelApi.Context.Clientes.Controllers;
+namespace HotelApi.Context.Hospedes.Controllers;
 
 [ApiController]
 [Route("v1/hospede")]
@@ -40,21 +41,23 @@ public class HospedeController : ControllerBase
             return NotFound(e.Message);
         }
     }
+
     [HttpPost]
-    [Route("CreateAsync")]
-    public async Task<IActionResult> CreateAsync([FromBody] Hospede hospede)
+    [Route("Create")]
+    [SuppressMessage("ReSharper.DPA", "DPA0011: High execution time of MVC action", MessageId = "time: 1244ms")]
+    public async Task<IActionResult> CreateAsync([FromBody] HospedeDTO hospedeDto)
     {
-        await _servicesHospede.Create(hospede);
-        return CreatedAtAction(nameof(CreateAsync), new { id = hospede.Id }, hospede);
+        await _servicesHospede.Create(hospedeDto);
+        return CreatedAtAction(nameof(CreateAsync), new { CPF = hospedeDto.CPF }, hospedeDto);
     }
 
     [HttpPut]
-    [Route("UpdatePut")]
-    public async Task<IActionResult> UpdateAsync([FromBody] Hospede? hospede)
+    [Route("UpdatePut/{id}")]
+    public async Task<IActionResult> UpdateAsync([FromBody] HospedeDTO hospede, [FromRoute] int id)
     {
         try
         {
-            await _servicesHospede.Update(hospede);
+            await _servicesHospede.Update(id, hospede);
             return Ok(hospede);
         }
         catch (Exception e)
@@ -69,8 +72,8 @@ public class HospedeController : ControllerBase
     {
         try
         {
-           await _servicesHospede.Delete(id);
-           return Ok();
+            await _servicesHospede.Delete(id);
+            return Ok();
         }
         catch (Exception e)
         {

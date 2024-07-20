@@ -1,6 +1,7 @@
 using HotelApi.Extension;
 
 var builder = WebApplication.CreateBuilder(args);
+
 builder.AddBuilderConfigurations();
 
 var app = builder.Build();

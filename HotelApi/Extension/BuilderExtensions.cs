@@ -1,5 +1,5 @@
-﻿using HotelApi.Context.Clientes.Services;
-using HotelApi.Context.Quarto;
+﻿using System.Text.Json.Serialization;
+using HotelApi.Context.Hospedes.Services;
 using HotelApi.Context.Quarto.Services;
 using HotelApi.Context.Reserva.Services;
 using HotelApi.Data;
@@ -11,11 +11,15 @@ public static class BuilderExtensions
 {
     public static WebApplicationBuilder AddBuilderConfigurations(this WebApplicationBuilder builder)
     {
-        builder.Services.AddControllers();
+        builder.Services.AddControllers().AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+        });
 
         builder.Services.AddScoped<ServicesQuarto>();
 
         builder.Services.AddScoped<ServiceReserva>();
+        builder.Services.AddScoped<Logger<ServiceReserva>>();
 
         builder.Services.AddScoped<ServicesHospede>();
 
@@ -26,6 +30,7 @@ public static class BuilderExtensions
         builder.Services.AddDbContext<HotelDbContext>(options => options
             .UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
                 new MySqlServerVersion(new Version(8, 0, 37))));
+        
         return builder;
     }
 }
