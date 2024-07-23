@@ -27,6 +27,10 @@ Responsável por garantir a segurança no acesso aos dados sensíveis das tabela
 - **Quarto**: Gerenciamento de quartos
 
 ## UI SWAGGER
+O projeto abrirá a UI do Swagger assim que ela começar. Aqui você pode navegar e testar cada endpoint
+![Hospede](https://github.com/felipemcvianna/API-REST-Hotel/blob/main/Hospede.jpeg)
+![Quarto](https://github.com/felipemcvianna/API-REST-Hotel/blob/main/Quarto.jpeg)
+![Reserva](https://github.com/felipemcvianna/API-REST-Hotel/blob/main/Reserva.jpeg)
 
 
 ## Como Executar
@@ -40,5 +44,14 @@ Responsável por garantir a segurança no acesso aos dados sensíveis das tabela
 
 1. Clone o repositório:
    ```sh
-   git clone https://github.com/seu-usuario/hotel-api.git
+   git clone https://github.com/felipemcvianna/API-REST-Hotel.git
    cd hotel-api
+2. Configure a string de conexão no appsettings.json.
+
+3. Execute as migrações:
+   ```sh
+   dotnet ef database update
+
+4. Execute a aplicação:
+   ```sh
+   dotnet run
