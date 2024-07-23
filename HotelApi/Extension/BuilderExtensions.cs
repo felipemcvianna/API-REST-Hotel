@@ -27,9 +27,9 @@ public static class BuilderExtensions
 
         builder.Services.AddSwaggerGen();
 
-        builder.Services.AddDbContext<HotelDbContext>(options => options
-            .UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
-                new MySqlServerVersion(new Version(8, 0, 37))));
+        builder.Services.AddDbContext<HotelDbContext>(options =>
+            options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
         
         return builder;
     }

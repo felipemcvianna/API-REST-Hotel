@@ -110,7 +110,7 @@ public class ReservaController : ControllerBase
     {
         try
         {
-            await _serviceReserva.UpdateCheckInDate(id, newDate);
+            await _serviceReserva.UpdateCheckOutDate(id, newDate);
             return Ok("Objeto atualizado com sucesso");
         }
         catch (Exception e)

@@ -6,6 +6,6 @@ public class ReservaDTO
 {
     public int QuartoId { get; set; }
     public DateTime CheckIn { get; set; }
-    public ICollection<HospedeDTO> Hospedes { get; set; } = new List<HospedeDTO>();
+    public List<string> CPF { get; set; } = new List<string>();
     public DateTime CheckOut { get; set; }
 }

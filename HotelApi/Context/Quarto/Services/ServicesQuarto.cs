@@ -103,6 +103,7 @@ public class ServicesQuarto
             quarto.Vagas += quarto.SalvarVagas;
             quarto.Status = Status.Disponivel;
         }
+        await _context.SaveChangesAsync();
     }
 
     private async Task AtualizarStatusDisponibilidade(int id)

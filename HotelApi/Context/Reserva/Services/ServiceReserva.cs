@@ -60,6 +60,15 @@ public class ServiceReserva
         if (quarto == null)
             throw new ArgumentException(nameof(reservaDto.QuartoId), "O quarto não existe");
 
+        if (reservaDto.CPF.Count == 0)
+            throw new ArgumentNullException(nameof(reservaDto), "Selecione pelo menos um hospede");
+
+        List<Hospede> listaHospedes = new List<Hospede>();
+        foreach (var CPFS in reservaDto.CPF)
+        {
+            listaHospedes = await _context.Hospedes.Where(x => x.CPF == CPFS).ToListAsync();
+        }
+
         var reserva = new Models.Reserva()
         {
             QuartoId = reservaDto.QuartoId,
@@ -68,13 +77,8 @@ public class ServiceReserva
             CheckOut = reservaDto.CheckOut,
             CheckInConcluido = false,
             CheckOutConcluido = false,
-            Hospedes = reservaDto.Hospedes.Select(h => new Hospede
-            {
-                Nome = h.Nome,
-                Email = h.Email,
-                Celular = h.Celular,
-                CPF = h.CPF
-            }).ToList()
+            Hospedes = listaHospedes
+            
         };
 
         quarto.Reserva = reserva;

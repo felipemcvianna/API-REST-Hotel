@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\FelipeDev\\Desktop\\HotelApi\\HotelApi\\HotelApi.csproj": {}
+    "/home/felipedev/API-REST-Hotel/HotelApi/HotelApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\FelipeDev\\Desktop\\HotelApi\\HotelApi\\HotelApi.csproj": {
+    "/home/felipedev/API-REST-Hotel/HotelApi/HotelApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\FelipeDev\\Desktop\\HotelApi\\HotelApi\\HotelApi.csproj",
+        "projectUniqueName": "/home/felipedev/API-REST-Hotel/HotelApi/HotelApi.csproj",
         "projectName": "HotelApi",
-        "projectPath": "C:\\Users\\FelipeDev\\Desktop\\HotelApi\\HotelApi\\HotelApi.csproj",
-        "packagesPath": "C:\\Users\\FelipeDev\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\FelipeDev\\Desktop\\HotelApi\\HotelApi\\obj\\",
+        "projectPath": "/home/felipedev/API-REST-Hotel/HotelApi/HotelApi.csproj",
+        "packagesPath": "/home/felipedev/.nuget/packages/",
+        "outputPath": "/home/felipedev/API-REST-Hotel/HotelApi/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\FelipeDev\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/felipedev/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -52,9 +52,9 @@
               "target": "Package",
               "version": "[8.0.7, )"
             },
-            "Pomelo.EntityFrameworkCore.MySql": {
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[8.0.2, )"
+              "version": "[8.0.4, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -80,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.107/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
